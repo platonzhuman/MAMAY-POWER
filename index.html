@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAMAY-POWER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./image/snowy-house_18036518.png">
+</head>
+<body>
+    <!-- Фоновое изображение -->
+    <div class="background-image"></div>
+    
+    <!-- Мобильный гамбургер -->
+    <button class="mobile-hamburger" id="mobileHamburger" aria-label="Мобильное меню">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Оверлей для мобильного меню -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Боковое меню -->
+    <header class="glass-sidebar">
+        <div class="sidebar-content">
+            <a href="#" class="logo">
+                <i class="fas fa-mountain"></i>
+                <span>Мамай <strong>Коттеджи</strong></span>
+            </a>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i>Главная</a></li>
+                    <li><a href="#about"><i class="fas fa-snowflake"></i>О нас</a></li>
+                    <li><a href="#gallery"><i class="fas fa-images"></i>Галерея</a></li>
+                    <li><a href="#bonus"><i class="fas fa-gift"></i>Бонусы</a></li>
+                    <li><a href="#calendar"><i class="far fa-calendar-alt"></i>Календарь</a></li>
+                    <li><a href="#booking"><i class="fas fa-edit"></i>Бронирование</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i>Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                    <p><i class="fas fa-envelope"></i> info@mamay.ru</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Герой-секция -->
+        <section id="home" class="hero-section centered-section">
+            <div class="glass-container large">
+                <h1 class="hero-title">Зимняя сказка в <span class="highlight">Мамайских</span> коттеджах</h1>
+                <p class="hero-subtitle">Аренда элитных домов среди заснеженных гор. Ваш идеальный зимний отдых начинается здесь.</p>
+                <a href="#calendar" class="btn btn-primary btn-large">
+                    <i class="far fa-calendar-check"></i> Забронировать даты
+                </a>
+            </div>
+        </section>
+        
+        <!-- Секция "О нас" -->
+        <section id="about" class="about-section centered-section">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="glass-cards-grid">
+                <div class="glass-card">
+                    <div class="card-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Уникальное расположение</h3>
+                    <p>Наши коттеджи расположены в живописном ущелье с панорамным видом на заснеженные вершины гор.</p>
+                </div>
+                
+                <div class="glass-card">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Тепло и уют</h3>
+                    <p>В каждом доме - настоящий камин, теплые полы и панорамные окна с видом на зимнюю сказку.</p>
+                </div>
+                
+                <div class="glass-card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Полная безопасность</h3>
+                    <p>Видеонаблюдение, охраняемая территория и круглосуточная поддержка для вашего спокойствия.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Секция галереи -->
+        <section id="gallery" class="gallery-section centered-section">
+            <h2 class="section-title">Наши коттеджи</h2>
+            <div class="gallery-container">
+                <div class="slider-container glass-container">
+                    <div class="slider-wrapper" id="sliderWrapper">
+                        <div class="slide active">
+                            <img src="./image/house-uli-two.jpg" alt="Коттедж зимой" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="./image/krot-reka.jpg" alt="Интерьер с камином" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="./image/photo-scklon-mamay.jpg" alt="Зимний пейзаж" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="./image/kuzy-mamay.jpg" alt="Зимний пейзаж" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="./image/krot-reka-two.jpg" alt="Зимний пейзаж" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn prev" id="prevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="slider-dots" id="sliderDots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                            <span class="dot" data-index="3"></span>
+                            <span class="dot" data-index="4"></span>
+                        </div>
+                        <button class="slider-btn next" id="nextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Секция бонусов -->
+        <section id="bonus" class="bonus-section centered-section">
+            <h2 class="section-title">Выгодные предложения</h2>
+            <div class="bonus-cards">
+                <div class="bonus-card glass-container">
+                    <div class="bonus-header">
+                        <h3><i class="fas fa-crown"></i> Недельный отдых</h3>
+                        <div class="discount-badge">-30%</div>
+                    </div>
+                    <p class="bonus-description">Проживите 7 ночей и получите скидку 30% от общей стоимости!</p>
+                    <ul class="bonus-features">
+                        <li><i class="fas fa-check"></i> Бесплатный ранний заезд</li>
+                        <li><i class="fas fa-check"></i> Дрова для камина в подарок</li>
+                        <li><i class="fas fa-check"></i> Зимний BBQ-набор</li>
+                    </ul>
+                    <a href="#calendar" class="btn btn-secondary" data-promo="week">
+                        <i class="far fa-calendar"></i> Выбрать даты
+                    </a>
+                </div>
+                
+                <div class="bonus-card glass-container premium">
+                    <div class="bonus-header">
+                        <h3><i class="fas fa-gem"></i> Месячный отпуск</h3>
+                        <div class="discount-badge">-40%</div>
+                    </div>
+                    <p class="bonus-description">Забронируйте месяц и получите максимальную скидку 40%!</p>
+                    <ul class="bonus-features">
+                        <li><i class="fas fa-check"></i> Все преимущества недельного тарифа</li>
+                        <li><i class="fas fa-check"></i> Еженедельная уборка</li>
+                        <li><i class="fas fa-check"></i> Персональный сноуборд-инструктор</li>
+                        <li><i class="fas fa-check"></i> VIP-трансфер от аэропорта</li>
+                    </ul>
+                    <a href="#calendar" class="btn btn-primary" data-promo="month">
+                        <i class="far fa-calendar-star"></i> Забронировать месяц
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Секция календаря -->
+        <section id="calendar" class="calendar-section centered-section">
+            <h2 class="section-title">Календарь бронирования</h2>
+            <div class="calendar-container glass-container">
+                <div class="calendar-header">
+                    <h3>Выберите даты заезда и выезда</h3>
+                    <p class="calendar-subtitle">Свободные даты отмечены <span class="available-dot"></span>, занятые - <span class="booked-dot"></span></p>
+                </div>
+                
+                <div class="calendar-wrapper">
+                    <div class="calendar-controls">
+                        <button id="prevMonth" class="month-nav">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h4 id="currentMonth">Декабрь 2024</h4>
+                        <button id="nextMonth" class="month-nav">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Календарь будет сгенерирован через JS -->
+                    </div>
+                    
+                    <div class="selected-dates">
+                        <div class="date-info">
+                            <span>Заезд:</span>
+                            <strong id="checkinDate">--.--.----</strong>
+                        </div>
+                        <div class="date-info">
+                            <span>Выезд:</span>
+                            <strong id="checkoutDate">--.--.----</strong>
+                        </div>
+                        <div class="date-info">
+                            <span>Ночей:</span>
+                            <strong id="nightsCount">0</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="price-summary" id="priceSummary" style="display: none;">
+                        <div class="price-row">
+                            <span>Стоимость проживания:</span>
+                            <span id="accommodationPrice">0 ₽</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Примененная скидка:</span>
+                            <span id="discountAmount">0 ₽</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Предоплата (40%):</span>
+                            <span id="depositAmount">0 ₽</span>
+                        </div>
+                    </div>
+                    
+                    <button id="bookNowBtn" class="btn btn-primary btn-large" disabled>
+                        <i class="fas fa-lock"></i> Перейти к оплате
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Форма бронирования -->
+        <section id="booking" class="booking-section centered-section">
+            <h2 class="section-title">Форма бронирования</h2>
+            <div class="booking-form-container glass-container">
+                <form id="bookingForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name"><i class="fas fa-user"></i> Ваше имя</label>
+                            <input type="text" id="name" required placeholder="Иван Иванов">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Телефон</label>
+                            <input type="tel" id="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" required placeholder="ivan@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cottage"><i class="fas fa-home"></i> Коттедж</label>
+                            <select id="cottage" required>
+                                <option value="">Выберите коттедж</option>
+                                <option value="alpine">Альпийский (до 4 чел.)</option>
+                                <option value="premium">Премиум (до 6 чел.)</option>
+                                <option value="luxury">Люкс (до 8 чел.)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="message"><i class="fas fa-comment"></i> Дополнительные пожелания</label>
+                            <textarea id="message" placeholder="Особые пожелания, время заезда..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-footer">
+<div class="agreement">
+    <input class="input-one" type="checkbox" id="agreement" required>
+    <label for="agreement">
+        Я согласен условиями бронирования и политикой конфиденциальности
+    </label>
+</div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Отправить заявку
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Футер -->
+        <footer id="contact" class="footer-section">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <div class="footer-logo">
+                            <i class="fas fa-mountain"></i>
+                            <h3>Мамай <span>Коттеджи</span></h3>
+                        </div>
+                        <p class="footer-description">Создаем незабываемые зимние впечатления с 2015 года.</p>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Быстрые ссылки</h4>
+                        <ul>
+                            <li><a href="#about">О нас</a></li>
+                            <li><a href="#gallery">Галерея</a></li>
+                            <li><a href="#bonus">Бонусы</a></li>
+                            <li><a href="#calendar">Календарь</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4>Контакты</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Гора Мамай, Иркутская область</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (XXX) XXX-XX-XX</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>booking@mamay.ru</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Мамай Коттеджи. Все права защищены.</p>
+                    <p class="comp">Сайт создала компания INFO-MARKET</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+    <script src="script.js"></script>
+    <script src="kras.js"></script>
+</body>
+</html>

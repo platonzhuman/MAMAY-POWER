@@ -1,0 +1,338 @@
+/* kras.css - Специальные эффекты для красивого дизайна */
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Эффект снега */
+.snow-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    animation: fall linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Эффект переливывания */
+.gradient-border {
+    position: relative;
+    border: double 3px transparent;
+    border-radius: var(--border-radius);
+    background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), 
+                      linear-gradient(45deg, var(--accent-color), var(--secondary-color), #ff6b6b);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    animation: borderGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes borderGlow {
+    0% {
+        background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), 
+                          linear-gradient(45deg, var(--accent-color), var(--secondary-color), #ff6b6b);
+    }
+    100% {
+        background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), 
+                          linear-gradient(225deg, var(--accent-color), var(--secondary-color), #ff6b6b);
+    }
+}
+
+/* Эффект свечения */
+.glow-effect {
+    position: relative;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color), var(--accent-color));
+    border-radius: calc(var(--border-radius) + 4px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::after {
+    opacity: 0.3;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Эффект параллакса */
+.parallax-layer {
+    transition: transform 0.3s ease-out;
+}
+
+/* Анимация для карточек при скролле */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Эффект стекла с градиентом */
+.glass-gradient {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Эффект морозного узора */
+.frost-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Анимация кнопок */
+.btn-pulse {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-pulse::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-pulse:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Эффект для изображений */
+.image-glow img {
+    filter: brightness(1.1) contrast(1.05);
+    transition: filter 0.5s ease;
+}
+
+.image-glow:hover img {
+    filter: brightness(1.2) contrast(1.1) saturate(1.3);
+}
+
+/* Эффект текста с градиентом */
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color), #a8dadc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: textShine 3s ease-in-out infinite alternate;
+}
+
+@keyframes textShine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Эффект загрузки */
+.loading-wave {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.wave-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    animation: wave 1.2s ease-in-out infinite;
+}
+
+.wave-dot:nth-child(2) { animation-delay: -0.9s; }
+.wave-dot:nth-child(3) { animation-delay: -0.6s; }
+.wave-dot:nth-child(4) { animation-delay: -0.3s; }
+
+@keyframes wave {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Эффект снежинок при наведении */
+.hover-snow:hover::before {
+    content: '❄';
+    position: absolute;
+    animation: snowFall 1s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes snowFall {
+    to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* =============================================================
+================================================================ */
+
+
+/* Эффект морозных трещин */
+.crack-line {
+    position: absolute;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.9), 
+        rgba(200, 230, 255, 0.9), 
+        rgba(255, 255, 255, 0.9), 
+        transparent);
+    border-radius: 1px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Эффект инея */
+.frost-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.frost-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 40% 50%, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 70px 70px, 30px 30px;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.frost-effect.frozen::before {
+    opacity: 0.6;
+    animation: frostSparkle 2s infinite alternate;
+}
+
+@keyframes frostSparkle {
+    0%, 100% {
+        opacity: 0.4;
+        background-position: 0 0, 0 0, 0 0;
+    }
+    50% {
+        opacity: 0.8;
+        background-position: 10px 10px, 20px 20px, 5px 5px;
+    }
+}
+
+/* Дрожь от холода */
+@keyframes coldShiver {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    10% { transform: translate(-0.5px, -0.5px) rotate(-0.2deg); }
+    20% { transform: translate(0.5px, 0.5px) rotate(0.2deg); }
+    30% { transform: translate(-0.3px, 0.3px) rotate(-0.1deg); }
+    40% { transform: translate(0.3px, -0.3px) rotate(0.1deg); }
+    50% { transform: translate(-0.2px, -0.2px) rotate(-0.1deg); }
+    60% { transform: translate(0.2px, 0.2px) rotate(0.1deg); }
+    70% { transform: translate(-0.1px, 0.1px) rotate(-0.05deg); }
+    80% { transform: translate(0.1px, -0.1px) rotate(0.05deg); }
+}
+
+.freeze-crack-effect.freezing {
+    animation: coldShiver 0.8s ease-in-out;
+}
+
+/* Свечение льда */
+@keyframes iceGlow {
+    0%, 100% {
+        box-shadow: 
+            inset 0 0 20px rgba(173, 216, 230, 0.1),
+            0 0 20px rgba(173, 216, 230, 0.1);
+    }
+    50% {
+        box-shadow: 
+            inset 0 0 30px rgba(173, 216, 230, 0.3),
+            0 0 30px rgba(173, 216, 230, 0.3);
+    }
+}
+
+.freeze-crack-effect.frozen {
+    animation: iceGlow 3s infinite alternate;
+}
