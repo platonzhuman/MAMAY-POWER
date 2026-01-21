@@ -1281,3 +1281,16 @@ option{
         order: -1;
     }
 }
+
+/* Стили для секции "Наши дома" */
+.homes-section {
+    margin-bottom: 100px;
+}
+
+/* Уже есть стили для .glass-cards-grid и .glass-card, но если нужно что-то специфичное: */
+.homes-section .glass-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+}

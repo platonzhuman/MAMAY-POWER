@@ -1,0 +1,1528 @@
+/* room.css - Стили для детальной страницы коттеджа */
+
+/* Фоновое изображение комнаты */
+.room-background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./image/krot-reka.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.25;
+    animation: backgroundPan 60s infinite linear;
+}
+
+@keyframes backgroundPan {
+    0% {
+        background-position: center;
+        transform: scale(1);
+    }
+    50% {
+        background-position: 10% 20%;
+        transform: scale(1.05);
+    }
+    100% {
+        background-position: center;
+        transform: scale(1);
+    }
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 15px 25px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumbs a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.breadcrumbs i {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.breadcrumbs span {
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+/* Герой секция комнаты */
+.room-hero-section {
+    margin-bottom: 80px;
+}
+
+.room-hero-container {
+    position: relative;
+    padding: 50px;
+    overflow: visible;
+}
+
+.room-header {
+    margin-bottom: 30px;
+}
+
+.room-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.room-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.room-tag:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.room-tag i {
+    color: var(--accent-color);
+}
+
+.room-price-badge {
+    position: absolute;
+    top: -25px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(46, 196, 182, 0.4);
+    z-index: 2;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.price-from {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 5px 0;
+}
+
+.price-period {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.room-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 30px 0;
+    opacity: 0.95;
+    max-width: 800px;
+}
+
+.room-hero-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+/* Галерея комнаты */
+.room-gallery-section {
+    margin-bottom: 100px;
+}
+
+.room-gallery-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.room-main-slider {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+.room-slider-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.room-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.5s ease;
+}
+
+.room-slide.active img {
+    transform: scale(1.02);
+}
+
+.room-slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 2;
+}
+
+.room-slider-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.room-slider-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.room-slider-counter {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.room-thumbnails {
+    padding: 20px;
+}
+
+.room-thumbnails-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.room-thumbnail {
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.room-thumbnail:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+}
+
+.room-thumbnail.active {
+    opacity: 1;
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(46, 196, 182, 0.3);
+}
+
+.room-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Детали комнаты */
+.room-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.room-about-content p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.room-feature-highlight {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, rgba(46, 196, 182, 0.1), rgba(62, 146, 204, 0.1));
+    border-radius: 15px;
+    border: 1px solid rgba(46, 196, 182, 0.3);
+}
+
+.room-feature-highlight i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+/* Особенности */
+.room-features h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.feature-category {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-category h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feature-category ul {
+    list-style: none;
+}
+
+.feature-category li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feature-category li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.feature-category li i {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+/* План этажей */
+.floor-plan-section {
+    margin-bottom: 100px;
+}
+
+.floor-plan-container {
+    padding: 40px;
+}
+
+.floor-plan-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.floor-tab {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.floor-tab.active {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    border-color: transparent;
+    box-shadow: 0 5px 15px rgba(46, 196, 182, 0.3);
+}
+
+.floor-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.floor-plan-content {
+    position: relative;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.floor-plan-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.floor-plan-image.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#floor1 {
+    background-image: url('./image/floor-plan-1.png');
+}
+
+#floor2 {
+    background-image: url('./image/floor-plan-2.png');
+}
+
+#floorTerritory {
+    background-image: url('./image/territory-plan.png');
+}
+
+.floor-plan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.room-area {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(46, 196, 182, 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(46, 196, 182, 0);
+    }
+}
+
+.room-area:hover {
+    border-color: var(--accent-color);
+    background: rgba(46, 196, 182, 0.1);
+}
+
+.area-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.room-area:hover .area-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: 110%;
+}
+
+.floor-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.living-room {
+    background: linear-gradient(135deg, #2ec4b6, #1e8c7a);
+}
+
+.kitchen {
+    background: linear-gradient(135deg, #3e92cc, #2a6ca3);
+}
+
+.bedroom {
+    background: linear-gradient(135deg, #ff6b6b, #e74c3c);
+}
+
+.bathroom {
+    background: linear-gradient(135deg, #a8dadc, #7bb8ba);
+}
+
+/* Услуги */
+.room-services-section {
+    margin-bottom: 100px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.service-card {
+    text-align: center;
+    padding: 30px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(62, 146, 204, 0.2), rgba(46, 196, 182, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.service-card h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: var(--text-light);
+}
+
+.service-card p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.service-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-top: auto;
+}
+
+/* Отзывы */
+.room-reviews-section {
+    margin-bottom: 100px;
+}
+
+.reviews-slider {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    position: relative;
+}
+
+.review-card {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.review-card.active {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.author-info h4 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.review-rating {
+    color: #ffd700;
+}
+
+.review-date {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.review-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    font-style: italic;
+    opacity: 0.9;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.reviews-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.review-prev,
+.review-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-prev:hover,
+.review-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.review-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.review-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.review-dot.active {
+    background: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* CTA секция */
+.room-cta-section {
+    margin-bottom: 100px;
+}
+
+.room-cta-container {
+    text-align: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-cta-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.room-cta-container p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.cta-promo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 83, 0.1));
+    border-radius: 50px;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.cta-promo i {
+    color: #ff6b6b;
+}
+
+/* Эффект снежинок в CTA */
+.room-cta-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px;
+    animation: snowDrift 20s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes snowDrift {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(100px, 100px);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .room-details-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .room-main-slider {
+        height: 400px;
+    }
+    
+    .room-hero-container {
+        padding: 30px;
+    }
+    
+    .room-price-badge {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .room-main-slider {
+        height: 300px;
+    }
+    
+    .room-slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .room-tags {
+        justify-content: center;
+    }
+    
+    .room-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .floor-plan-content {
+        height: 400px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .room-main-slider {
+        height: 250px;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .floor-plan-tabs {
+        justify-content: center;
+    }
+    
+    .floor-plan-content {
+        height: 300px;
+    }
+    
+    .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+    }
+    
+    .room-cta-container {
+        padding: 30px;
+    }
+}
+
+
+/* room.css - Стили для детальной страницы коттеджа */
+
+/* Удаляем отдельный фон комнаты, используем тот же что и в index.html */
+.room-background-image {
+    display: none;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 15px 25px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumbs a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.breadcrumbs i {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.breadcrumbs span {
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+/* Герой секция комнаты */
+.room-hero-section {
+    margin-bottom: 80px;
+}
+
+.room-hero-container {
+    position: relative;
+    padding: 50px;
+    overflow: visible;
+}
+
+.room-header {
+    margin-bottom: 30px;
+}
+
+.room-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.room-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.room-tag:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.room-tag i {
+    color: var(--accent-color);
+}
+
+.room-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 30px 0;
+    opacity: 0.95;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.room-hero-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Галерея комнаты */
+.room-gallery-section {
+    margin-bottom: 100px;
+}
+
+.room-gallery-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.room-main-slider {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+.room-slider-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.room-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.5s ease;
+}
+
+.room-slide.active img {
+    transform: scale(1.02);
+}
+
+.room-slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 2;
+}
+
+.room-slider-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.room-slider-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.room-slider-counter {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.room-thumbnails {
+    padding: 20px;
+}
+
+.room-thumbnails-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.room-thumbnail {
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.room-thumbnail:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+}
+
+.room-thumbnail.active {
+    opacity: 1;
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(46, 196, 182, 0.3);
+}
+
+.room-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Детали комнаты */
+.room-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.room-about-content p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.room-feature-highlight {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, rgba(46, 196, 182, 0.1), rgba(62, 146, 204, 0.1));
+    border-radius: 15px;
+    border: 1px solid rgba(46, 196, 182, 0.3);
+}
+
+.room-feature-highlight i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+/* Особенности */
+.room-features h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.feature-category {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-category h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feature-category ul {
+    list-style: none;
+}
+
+.feature-category li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feature-category li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.feature-category li i {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+/* Услуги */
+.room-services-section {
+    margin-bottom: 100px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.service-card {
+    text-align: center;
+    padding: 30px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(62, 146, 204, 0.2), rgba(46, 196, 182, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.service-card h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: var(--text-light);
+}
+
+.service-card p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.service-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-top: auto;
+}
+
+/* Отзывы */
+.room-reviews-section {
+    margin-bottom: 100px;
+}
+
+.reviews-slider {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    position: relative;
+}
+
+.review-card {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.review-card.active {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.author-info h4 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.review-rating {
+    color: #ffd700;
+}
+
+.review-date {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.review-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    font-style: italic;
+    opacity: 0.9;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.reviews-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.review-prev,
+.review-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-prev:hover,
+.review-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.review-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.review-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.review-dot.active {
+    background: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* CTA секция */
+.room-cta-section {
+    margin-bottom: 100px;
+}
+
+.room-cta-container {
+    text-align: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-cta-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.room-cta-container p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .room-details-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .room-main-slider {
+        height: 400px;
+    }
+    
+    .room-hero-container {
+        padding: 30px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .room-main-slider {
+        height: 300px;
+    }
+    
+    .room-slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .room-tags {
+        justify-content: center;
+    }
+    
+    .room-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .room-main-slider {
+        height: 250px;
+    }
+    
+    .room-thumbnails-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+    }
+    
+    .room-cta-container {
+        padding: 30px;
+    }
+}

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коттедж "Альпийский" - Мамай Коттеджи</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="kras.css">
+    <link rel="stylesheet" href="room.css">
+    <link rel="icon" type="image/x-icon" href="./image/snowy-house_18036518.png">
+</head>
+<body>
+    <!-- Фоновое изображение -->
+    <div class="background-image"></div>
+    
+    <!-- Мобильный гамбургер -->
+    <button class="mobile-hamburger" id="mobileHamburger" aria-label="Мобильное меню">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Оверлей для мобильного меню -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Боковое меню -->
+    <header class="glass-sidebar">
+        <div class="sidebar-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-mountain"></i>
+                <span>Мамай <strong>Коттеджи</strong></span>
+            </a>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html#home"><i class="fas fa-home"></i>Главная</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-snowflake"></i>О нас</a></li>
+                    <li><a href="index.html#gallery"><i class="fas fa-images"></i>Галерея</a></li>
+                    <li><a href="index.html#homes" class="active"><i class="fas fa-hotel"></i>Коттеджи</a></li>
+                    <li><a href="index.html#bonus"><i class="fas fa-gift"></i>Бонусы</a></li>
+                    <li><a href="index.html#calendar"><i class="far fa-calendar-alt"></i>Календарь</a></li>
+                    <li><a href="index.html#booking"><i class="fas fa-edit"></i>Бронирование</a></li>
+                    <li><a href="index.html#contact"><i class="fas fa-envelope"></i>Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                    <p><i class="fas fa-envelope"></i> info@mamay.ru</p>
+                </div>
+                <a href="index.html#calendar" class="btn btn-secondary" style="margin-top: 20px;">
+                    <i class="far fa-calendar-check"></i> Забронировать
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs glass-container">
+            <a href="index.html">Главная</a> <i class="fas fa-chevron-right"></i>
+            <a href="index.html#homes">Коттеджи</a> <i class="fas fa-chevron-right"></i>
+            <span id="roomName">Коттедж "Альпийский"</span>
+        </div>
+        
+        <!-- Герой-секция комнаты -->
+        <section class="room-hero-section centered-section">
+            <div class="glass-container large room-hero-container">
+                <div class="room-header">
+                    <h1 class="hero-title" id="roomTitle">Коттедж <span class="highlight">"Альпийский"</span></h1>
+                    <div class="room-tags">
+                        <span class="room-tag"><i class="fas fa-user-friends"></i> до 4 гостей</span>
+                        <span class="room-tag"><i class="fas fa-bed"></i> 2 спальни</span>
+                        <span class="room-tag"><i class="fas fa-ruler-combined"></i> 120 м²</span>
+                        <span class="room-tag"><i class="fas fa-fire"></i> камин</span>
+                        <span class="room-tag"><i class="fas fa-hot-tub"></i> сауна</span>
+                    </div>
+                </div>
+                
+                <p class="room-description">
+                    Уютный альпийский коттедж с панорамными окнами и видом на заснеженные горы. Идеально подходит для семьи или компании до 4 человек. Наслаждайтесь уединением и комфортом в окружении зимней сказки.
+                </p>
+                
+                <div class="room-hero-actions">
+                    <a href="index.html#calendar" class="btn btn-primary btn-large">
+                        <i class="far fa-calendar-check"></i> Забронировать сейчас
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Галерея комнаты -->
+        <section class="room-gallery-section centered-section">
+            <h2 class="section-title">Фотогалерея</h2>
+            
+            <div class="room-gallery-container">
+                <div class="room-main-slider glass-container">
+                    <div class="room-slider-wrapper" id="roomSliderWrapper">
+                        <!-- Слайды будут добавлены через JS -->
+                    </div>
+                    <div class="room-slider-controls">
+                        <button class="room-slider-btn prev" id="roomPrevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="room-slider-counter">
+                            <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+                        </div>
+                        <button class="room-slider-btn next" id="roomNextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="room-thumbnails glass-container">
+                    <div class="room-thumbnails-grid" id="roomThumbnails">
+                        <!-- Миниатюры будут добавлены через JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Описание комнаты -->
+        <section class="room-details-section centered-section">
+            <div class="room-details-container">
+                <div class="room-about glass-container">
+                    <h2 class="section-title">О коттедже</h2>
+                    <div class="room-about-content">
+                        <p>
+                            Коттедж "Альпийский" сочетает в себе современный комфорт и традиционный уют. Просторная гостиная с панорамными окнами открывает захватывающий вид на горный ландшафт, а настоящий камин создает неповторимую атмосферу тепла и уюта.
+                        </p>
+                        <p>
+                            На первом этаже расположена полностью оборудованная кухня с современной техникой, обеденная зона на 6 человек и санузел. На втором этаже вас ждут две уютные спальни с ортопедическими матрасами и гардеробными.
+                        </p>
+                        <div class="room-feature-highlight freeze-crack-effect">
+                            <i class="fas fa-star"></i>
+                            <span>Особенность: частная сауна с видом на звездное небо</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-features glass-container">
+                    <h3><i class="fas fa-list-check"></i> Удобства и оснащение</h3>
+                    <div class="features-grid">
+                        <div class="feature-category">
+                            <h4><i class="fas fa-utensils"></i> Кухня</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Полный набор посуды</li>
+                                <li><i class="fas fa-check"></i> Холодильник, духовка, микроволновка</li>
+                                <li><i class="fas fa-check"></i> Кофемашина и чайник</li>
+                                <li><i class="fas fa-check"></i> Посудомоечная машина</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-category">
+                            <h4><i class="fas fa-couch"></i> Гостиная</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Панорамные окна</li>
+                                <li><i class="fas fa-check"></i> Камин (дрова включены)</li>
+                                <li><i class="fas fa-check"></i> Smart TV 55"</li>
+                                <li><i class="fas fa-check"></i> Wi-Fi до 100 Мбит/с</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-category">
+                            <h4><i class="fas fa-bed"></i> Спальни</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 2 спальни (двуспальная + две односпальные)</li>
+                                <li><i class="fas fa-check"></i> Ортопедические матрасы</li>
+                                <li><i class="fas fa-check"></i> Постельное белье премиум-класса</li>
+                                <li><i class="fas fa-check"></i> Гардеробные и сейф</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-category">
+                            <h4><i class="fas fa-shower"></i> Санузел и сауна</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 2 санузла (один с душем)</li>
+                                <li><i class="fas fa-check"></i> Фен, полотенца, халаты</li>
+                                <li><i class="fas fa-check"></i> Частная финская сауна</li>
+                                <li><i class="fas fa-check"></i> Теплые полы</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Дополнительные услуги -->
+        <section class="room-services-section centered-section">
+            <h2 class="section-title">Дополнительные услуги</h2>
+            <div class="services-grid">
+                <div class="service-card glass-container freeze-crack-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-snowboarding"></i>
+                    </div>
+                    <h4>Трансфер на склон</h4>
+                    <p>Организуем трансфер до горнолыжного склона и обратно</p>
+                    <div class="service-price">1 500 ₽/день</div>
+                </div>
+                
+                <div class="service-card glass-container freeze-crack-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h4>Шеф-повар</h4>
+                    <p>Приготовление блюд по вашему заказу прямо в коттедже</p>
+                    <div class="service-price">5 000 ₽/день</div>
+                </div>
+                
+                <div class="service-card glass-container freeze-crack-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h4>СПА процедуры</h4>
+                    <p>Массаж и спа-процедуры на дому от профессиональных мастеров</p>
+                    <div class="service-price">3 000 ₽/сеанс</div>
+                </div>
+                
+                <div class="service-card glass-container freeze-crack-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h4>Новогоднее оформление</h4>
+                    <p>Украсим коттедж к праздникам (елка, гирлянды, декор)</p>
+                    <div class="service-price">7 000 ₽</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Отзывы -->
+        <section class="room-reviews-section centered-section">
+            <h2 class="section-title">Отзывы гостей</h2>
+            <div class="reviews-slider glass-container">
+                <div class="review-card active">
+                    <div class="review-header">
+                        <div class="review-author">
+                            <div class="author-avatar">А</div>
+                            <div class="author-info">
+                                <h4>Анна и Сергей</h4>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-date">Январь 2024</div>
+                    </div>
+                    <p class="review-text">
+                        "Отдыхали в Альпийском коттедже на Новый год. Виды из окна - просто волшебные! Камин создавал невероятную атмосферу. Особенно понравилась сауна после катания на лыжах. Обязательно вернемся!"
+                    </p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-author">
+                            <div class="author-avatar">Д</div>
+                            <div class="author-info">
+                                <h4>Дмитрий с семьей</h4>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-date">Декабрь 2023</div>
+                    </div>
+                    <p class="review-text">
+                        "Идеальное место для семейного отдыха. Дети в восторге от снега за окном, жена - от полностью оборудованной кухни. Удобное расположение - до склона 10 минут. Спасибо за теплый прием!"
+                    </p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-author">
+                            <div class="author-avatar">М</div>
+                            <div class="author-info">
+                                <h4>Мария</h4>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-date">Февраль 2024</div>
+                    </div>
+                    <p class="review-text">
+                        "Приезжали с подругами на выходные. Коттедж превзошел все ожидания! Фото не передают всей красоты. Уютно, чисто, стильно. Отдельное спасибо за welcome-набор с местными сладостями."
+                    </p>
+                </div>
+                
+                <div class="reviews-controls">
+                    <button class="review-prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="review-dots">
+                        <span class="review-dot active"></span>
+                        <span class="review-dot"></span>
+                        <span class="review-dot"></span>
+                    </div>
+                    <button class="review-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA секция -->
+        <section class="room-cta-section centered-section">
+            <div class="room-cta-container glass-container large">
+                <h2>Готовы к зимней сказке?</h2>
+                <p>Забронируйте коттедж "Альпийский" прямо сейчас</p>
+                <div class="cta-actions">
+                    <a href="index.html#calendar" class="btn btn-primary btn-large">
+                        <i class="far fa-calendar-check"></i> Забронировать даты
+                    </a>
+                    <a href="index.html#contact" class="btn btn-secondary">
+                        <i class="fas fa-question-circle"></i> Задать вопрос
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Футер -->
+        <footer id="contact" class="footer-section">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <div class="footer-logo">
+                            <i class="fas fa-mountain"></i>
+                            <h3>Мамай <span>Коттеджи</span></h3>
+                        </div>
+                        <p class="footer-description">Создаем незабываемые зимние впечатления с 2015 года.</p>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Наши коттеджи</h4>
+                        <ul>
+                            <li><a href="room.html?id=alpine" class="active">Альпийский</a></li>
+                            <li><a href="room.html?id=premium">Премиум</a></li>
+                            <li><a href="room.html?id=luxury">Люкс</a></li>
+                            <li><a href="index.html#homes">Все коттеджи</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4>Контакты</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Гора Мамай, Иркутская область</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (XXX) XXX-XX-XX</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>booking@mamay.ru</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Мамай Коттеджи. Все права защищены.</p>
+                    <p class="comp">Сайт создала компания INFO-MARKET</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Скрипты -->
+    <script src="script.js"></script>
+    <script src="kras.js"></script>
+    <script src="room.js"></script>
+</body>
+</html>
