@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = '';
             }
         });
+    // В конце функции DOMContentLoaded добавьте:
+initDatePicker();
     }
 
     // 2. Слайдер галереи
@@ -726,3 +728,328 @@ if (bookNowBtn) {
         yearElement.textContent = currentYear;
     }
 });
+
+
+// 8. Инициализация календаря для выбора дат
+function initDatePicker() {
+    const calendarTrigger = document.getElementById('calendarTrigger');
+    const miniCalendar = document.getElementById('miniCalendar');
+    const calendarDays = document.getElementById('calendarDays');
+    const currentMonthEl = document.querySelector('.current-month');
+    const prevMonthBtn = document.querySelector('.prev-month');
+    const nextMonthBtn = document.querySelector('.next-month');
+    const clearDatesBtn = document.querySelector('.clear-dates');
+    const applyDatesBtn = document.querySelector('.apply-dates');
+    const selectedRangeEl = document.getElementById('selectedRange');
+    const datesInput = document.getElementById('dates');
+    const dateInfoEl = document.getElementById('dateInfo');
+    
+    if (!calendarTrigger) return;
+    
+    let currentDate = new Date();
+    let selectedStartDate = null;
+    let selectedEndDate = null;
+    let isCalendarOpen = false;
+    
+    // Список занятых дат (для примера)
+    const bookedDates = [
+        '2024-12-20', '2024-12-21', '2024-12-22',
+        '2024-12-28', '2024-12-29', '2024-12-30', '2024-12-31',
+        '2025-01-01', '2025-01-02', '2025-01-03',
+        '2025-01-10', '2025-01-11'
+    ];
+    
+    // Открытие/закрытие календаря
+    calendarTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleCalendar();
+    });
+    
+    // Функция переключения календаря
+    function toggleCalendar() {
+        if (!isCalendarOpen) {
+            openCalendar();
+        } else {
+            closeCalendar();
+        }
+    }
+    
+    // Открыть календарь
+    function openCalendar() {
+        miniCalendar.classList.add('show');
+        isCalendarOpen = true;
+        renderCalendar(currentDate);
+        
+        // Добавляем эффект замерзания
+        miniCalendar.classList.add('freeze-crack-effect');
+        setTimeout(() => {
+            miniCalendar.classList.add('freezing');
+            setTimeout(() => {
+                miniCalendar.classList.remove('freezing');
+            }, 1000);
+        }, 100);
+    }
+    
+    // Закрыть календарь
+    function closeCalendar() {
+        miniCalendar.classList.remove('show');
+        isCalendarOpen = false;
+    }
+    
+    // Закрытие календаря при клике вне его (но не при первом клике на триггер)
+    document.addEventListener('click', function(e) {
+        // Если календарь открыт И клик был вне календаря И не на триггере
+        if (isCalendarOpen && 
+            !miniCalendar.contains(e.target) && 
+            e.target !== calendarTrigger && 
+            !calendarTrigger.contains(e.target)) {
+            closeCalendar();
+        }
+    });
+    
+    // Рендер календаря
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        
+        // Обновляем заголовок
+        const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                          'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+        currentMonthEl.textContent = `${monthNames[month]} ${year}`;
+        
+        // Очищаем контейнер дней
+        calendarDays.innerHTML = '';
+        
+        // Первый день месяца
+        const firstDay = new Date(year, month, 1);
+        const startingDay = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+        
+        // Последний день месяца
+        const lastDay = new Date(year, month + 1, 0);
+        const totalDays = lastDay.getDate();
+        
+        // Сегодняшняя дата
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        // Пустые ячейки в начале
+        for (let i = 0; i < startingDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'calendar-day empty';
+            calendarDays.appendChild(emptyCell);
+        }
+        
+        // Дни месяца
+        for (let day = 1; day <= totalDays; day++) {
+            const currentDateObj = new Date(year, month, day);
+            const dateString = formatDate(currentDateObj);
+            
+            const dayCell = document.createElement('div');
+            dayCell.className = 'calendar-day';
+            dayCell.textContent = day;
+            dayCell.dataset.date = dateString;
+            
+            // Проверяем, занята ли дата
+            if (bookedDates.includes(dateString)) {
+                dayCell.classList.add('disabled');
+                dayCell.title = 'Дата занята';
+            } else {
+                // Проверяем, сегодня ли это
+                if (currentDateObj.getTime() === today.getTime()) {
+                    dayCell.classList.add('today');
+                }
+                
+                // Проверяем, входит ли дата в выбранный диапазон
+                if (selectedStartDate && selectedEndDate) {
+                    if (currentDateObj >= selectedStartDate && currentDateObj <= selectedEndDate) {
+                        dayCell.classList.add('in-range');
+                        
+                        // Если это первый или последний день диапазона
+                        if (formatDate(currentDateObj) === formatDate(selectedStartDate) || 
+                            formatDate(currentDateObj) === formatDate(selectedEndDate)) {
+                            // Убираем in-range для выбранных дат
+                            dayCell.classList.remove('in-range');
+                        }
+                    }
+                }
+                
+                // Проверяем, выбрана ли дата как начало или конец
+                if (selectedStartDate && formatDate(selectedStartDate) === dateString) {
+                    dayCell.classList.add('selected');
+                }
+                if (selectedEndDate && formatDate(selectedEndDate) === dateString) {
+                    dayCell.classList.add('selected');
+                }
+                
+                // Обработчик клика
+                dayCell.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Предотвращаем всплытие
+                    selectDate(currentDateObj);
+                });
+                
+                // Эффект при наведении
+                dayCell.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('disabled')) {
+                        this.style.transform = 'scale(1.1)';
+                    }
+                });
+                
+                dayCell.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            }
+            
+            // Проверяем прошедшие даты
+            if (currentDateObj < today) {
+                dayCell.classList.add('disabled');
+                dayCell.title = 'Прошедшая дата';
+            }
+            
+            calendarDays.appendChild(dayCell);
+        }
+        
+        // Обновляем информацию о выбранных датах
+        updateSelectedDatesInfo();
+    }
+    
+    // Выбор даты
+    function selectDate(date) {
+        // Если нет выбранной начальной даты или выбраны обе даты
+        if (!selectedStartDate || (selectedStartDate && selectedEndDate)) {
+            // Выбор начальной даты (или сброс, если выбраны обе даты)
+            selectedStartDate = date;
+            selectedEndDate = null;
+            dateInfoEl.innerHTML = '<i class="fas fa-info-circle"></i><span>Теперь выберите дату выезда</span>';
+            dateInfoEl.style.color = '';
+        } 
+        // Если есть начальная дата, но нет конечной
+        else if (selectedStartDate && !selectedEndDate) {
+            // Если выбрана та же дата - отменяем выбор
+            if (formatDate(date) === formatDate(selectedStartDate)) {
+                selectedStartDate = null;
+                dateInfoEl.innerHTML = '<i class="fas fa-info-circle"></i><span>Выберите дату заезда и выезда</span>';
+            }
+            // Если выбрана более ранняя дата - меняем начальную дату
+            else if (date < selectedStartDate) {
+                selectedStartDate = date;
+                dateInfoEl.innerHTML = '<i class="fas fa-info-circle"></i><span>Теперь выберите дату выезда</span>';
+            }
+            // Если выбрана более поздняя дата - устанавливаем конечную дату
+            else {
+                // Проверяем минимальное количество ночей
+                const nights = Math.ceil((date - selectedStartDate) / (1000 * 60 * 60 * 24));
+                if (nights < 1) {
+                    showDateNotification('Минимальный срок проживания - 1 ночь');
+                    return;
+                }
+                
+                selectedEndDate = date;
+                dateInfoEl.innerHTML = `<i class="fas fa-check-circle"></i><span>Выбрано ${nights} ночей</span>`;
+                dateInfoEl.style.color = 'var(--accent-color)';
+            }
+        }
+        
+        // Перерисовываем календарь
+        renderCalendar(currentDate);
+    }
+    
+    // Обновление информации о выбранных датах
+    function updateSelectedDatesInfo() {
+        if (selectedStartDate && selectedEndDate) {
+            const nights = Math.ceil((selectedEndDate - selectedStartDate) / (1000 * 60 * 60 * 24));
+            selectedRangeEl.textContent = `${formatDate(selectedStartDate, true)} - ${formatDate(selectedEndDate, true)} (${nights} ночей)`;
+        } else if (selectedStartDate) {
+            selectedRangeEl.textContent = `С ${formatDate(selectedStartDate, true)} - выберите дату выезда`;
+        } else {
+            selectedRangeEl.textContent = 'Выберите даты заезда и выезда';
+        }
+    }
+    
+    // Форматирование даты
+    function formatDate(date, withYear = false) {
+        if (!date) return '';
+        
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        
+        return withYear ? `${day}.${month}.${year}` : `${year}-${month}-${day}`;
+    }
+    
+    // Показать уведомление
+    function showDateNotification(message) {
+        // Удаляем старые уведомления
+        const oldNotifications = document.querySelectorAll('.date-notification');
+        oldNotifications.forEach(notification => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        });
+        
+        const notification = document.createElement('div');
+        notification.className = 'date-notification';
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    // Навигация по месяцам
+    prevMonthBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+    });
+    
+    nextMonthBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
+    
+    // Очистка выбранных дат
+    clearDatesBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectedStartDate = null;
+        selectedEndDate = null;
+        datesInput.value = '';
+        dateInfoEl.innerHTML = '<i class="fas fa-info-circle"></i><span>Выберите дату заезда и выезда</span>';
+        dateInfoEl.style.color = '';
+        renderCalendar(currentDate);
+    });
+    
+    // Применение выбранных дат
+    applyDatesBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (selectedStartDate && selectedEndDate) {
+            const nights = Math.ceil((selectedEndDate - selectedStartDate) / (1000 * 60 * 60 * 24));
+            datesInput.value = `${formatDate(selectedStartDate, true)} - ${formatDate(selectedEndDate, true)} (${nights} ночей)`;
+            
+            // Эффект подтверждения
+            datesInput.style.animation = 'none';
+            setTimeout(() => {
+                datesInput.style.animation = 'dateConfirmed 0.5s ease';
+            }, 10);
+            
+            // Закрываем календарь
+            setTimeout(() => {
+                closeCalendar();
+            }, 300);
+        } else {
+            showDateNotification('Пожалуйста, выберите даты заезда и выезда');
+        }
+    });
+    
+    // Предотвращаем закрытие календаря при клике внутри него
+    miniCalendar.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}

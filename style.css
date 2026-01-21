@@ -1294,3 +1294,372 @@ option{
     justify-content: space-between;
     min-height: 380px;
 }
+
+/* Стили для календаря в форме */
+.date-picker-container {
+    position: relative;
+}
+
+.date-input {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.1);
+}
+
+.date-input:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.calendar-trigger-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-trigger-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Мини-календарь - убрана излишняя прозрачность */
+.mini-calendar-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    min-width: 320px;
+    background: rgba(15, 30, 50, 0.95); /* Увеличил непрозрачность */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    animation: calendarFadeIn 0.3s ease;
+}
+
+@keyframes calendarFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mini-calendar-popup.show {
+    display: block;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-header h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.calendar-nav {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    padding: 5px 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.calendar-day:hover:not(.disabled, .selected, .in-range) {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.calendar-day.empty {
+    cursor: default;
+    opacity: 0.3;
+    background: transparent;
+}
+
+.calendar-day.today {
+    background: rgba(46, 196, 182, 0.3);
+    color: var(--accent-color);
+    font-weight: 700;
+    border: 1px solid rgba(46, 196, 182, 0.5);
+}
+
+.calendar-day.selected {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 3px 10px rgba(46, 196, 182, 0.4);
+}
+
+.calendar-day.in-range {
+    background: rgba(46, 196, 182, 0.2);
+    color: var(--text-light);
+}
+
+.calendar-day.disabled {
+    background: rgba(255, 107, 107, 0.2);
+    color: rgba(255, 107, 107, 0.7);
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.calendar-day.disabled:hover {
+    transform: none;
+    background: rgba(255, 107, 107, 0.2);
+}
+
+/* Эффект для дня в диапазоне */
+.calendar-day.in-range::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(46, 196, 182, 0.2), rgba(62, 146, 204, 0.2));
+    border-radius: 8px;
+    z-index: -1;
+}
+
+.calendar-footer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selected-dates-preview {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid rgba(46, 196, 182, 0.3);
+}
+
+.selected-dates-preview span {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.calendar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-actions button {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.date-selection-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.date-selection-info i {
+    color: var(--accent-color);
+}
+
+/* Эффект снежинок для календаря */
+.mini-calendar-popup::before {
+    content: '❄';
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    animation: snowFloat 3s ease-in-out infinite;
+}
+
+@keyframes snowFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(180deg);
+    }
+}
+
+/* Анимация подтверждения дат */
+@keyframes dateConfirmed {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.4); 
+        border-color: var(--accent-color);
+    }
+    70% { 
+        box-shadow: 0 0 0 10px rgba(46, 196, 182, 0); 
+        border-color: var(--accent-color);
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(46, 196, 182, 0); 
+        border-color: var(--glass-border);
+    }
+}
+
+/* Уведомления */
+.date-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 107, 107, 0.95);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    z-index: 1002;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Адаптивность для календаря */
+@media (max-width: 768px) {
+    .mini-calendar-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 350px;
+        margin: 0;
+        z-index: 1001;
+    }
+    
+    .calendar-day {
+        font-size: 0.8rem;
+    }
+    
+    .calendar-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-calendar-popup {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .calendar-weekdays div {
+        font-size: 0.7rem;
+    }
+    
+    .calendar-day {
+        font-size: 0.75rem;
+    }
+}
